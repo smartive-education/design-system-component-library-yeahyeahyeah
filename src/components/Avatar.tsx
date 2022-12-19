@@ -60,10 +60,10 @@ const ImageAnim = tw`
 `;
 
 const Image = styled.img(({ variant }: IImageProps) => [
-  variant === 'small' && tw`h-40 w-40 min-w-[40px]`,
+  variant === 'small' && tw`h-48 w-48 min-w-[48px]`,
   variant === 'small' && ImageAnim,
 
-  variant === 'medium' && tw`h-64 w-64 border-4`,
+  variant === 'medium' && tw`h-70 w-70 border-4`,
   variant === 'medium' && ImageAnim,
 
   variant === 'large' && tw`h-96 w-96 border-4`,

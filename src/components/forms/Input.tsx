@@ -104,7 +104,7 @@ const FormLabelStyles = styled.label(() => [
     text-slate-900 
     font-semibold 
     w-full 
-    mt-24
+    mt-12
     mb-24
   `,
 ]);

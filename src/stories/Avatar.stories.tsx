@@ -1,6 +1,7 @@
+import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Avatar } from 'src/components/Avatar';
-import { DefaultLayout } from 'src/components/layouts/DefaultLayout';
+import { Avatar } from '../components/Avatar';
+import { DefaultLayout } from '../components/layouts/DefaultLayout';
 
 export default {
   title: 'User',
@@ -17,7 +18,7 @@ export default {
       control: {
         type: 'text',
       },
-      defaultValue: 'https://media.giphy.com/media/ZYzt9dXQUjmBa/giphy.gif',
+      defaultValue: 'https://shorturl.at/lowzH',
     },
     alt: {
       control: {

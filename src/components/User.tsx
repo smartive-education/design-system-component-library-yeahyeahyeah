@@ -1,14 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
-import { Heading } from 'src/components/typography/Heading';
-import { IconLink, IIconLinkProps } from 'src/components/IconLink';
+import { Heading } from '../components/typography/Heading';
+import { IconLink, IIconLinkProps } from '../components/IconLink';
 import { Button } from './buttons/Button';
-import { Avatar } from 'src/components/Avatar';
+import { Avatar } from '../components/Avatar';
 
 export interface IUserProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
   label: string;
-  variant: 'small' | 'medium' | 'large' | 'xlarge' | 'recommended' | 'write';
+  variant:
+    | 'small'
+    | 'medium'
+    | 'large'
+    | 'xlarge'
+    | 'recommended'
+    | 'write'
+    | 'inline';
   username: IIconLinkProps;
   timestamp?: IIconLinkProps;
   location?: IIconLinkProps;
@@ -72,6 +79,16 @@ export const User: React.FC<IUserProps> = ({
           </Column>
         </Row>
       )}
+
+      {variant === 'inline' && (
+        <Row gap="small">
+          <Column variant={variant}>
+            <Avatar alt={avatar.alt} src={avatar.src} variant={'medium'} />
+            <Heading tag="h4" color="dark" variant={'default'} label={label} />
+          </Column>
+        </Row>
+      )}
+
       {variant === 'medium' && (
         <Column>
           <Heading tag="h4" color="dark" variant={'large'} label={label} />
@@ -186,6 +203,13 @@ const Column = styled.div(({ variant }: IUserStyles) => [
   `,
   variant === 'small' && tw`mt-2`,
   variant === 'recommended' && tw`items-center`,
+  variant === 'inline' &&
+    tw`
+    flex
+    flex-row
+    items-center
+    gap-8
+  `,
 ]);
 
 const Row = styled.div(({ gap }: IRowStyles) => [
