@@ -1,6 +1,7 @@
+import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { InputForm } from 'src/components/forms/Input';
-import { DefaultLayout } from 'src/components/layouts/DefaultLayout';
+import { InputForm } from '../../components/forms/Input';
+import { DefaultLayout } from '../../components/layouts/DefaultLayout';
 
 export default {
   title: 'Form/Fields',

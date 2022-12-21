@@ -27,7 +27,7 @@ export default {
     },
     size: {
       description: 'A sized version of the button',
-      control: { type: 'radio' },
+      control: { type: 'select' },
       defaultValue: 'small',
     },
     width: {

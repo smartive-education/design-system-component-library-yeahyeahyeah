@@ -1,6 +1,7 @@
+import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { DefaultLayout } from 'src/components/layouts/DefaultLayout';
-import { Paragraph } from 'src/components/typography/Paragraph';
+import { DefaultLayout } from '../../components/layouts/DefaultLayout';
+import { Paragraph } from '../../components/typography/Paragraph';
 
 export default {
   title: 'Typography/Paragraph',

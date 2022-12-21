@@ -1,6 +1,7 @@
+import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { DefaultLayout } from 'src/components/layouts/DefaultLayout';
-import { ImageContainer } from 'src/components/ImageContainer';
+import { DefaultLayout } from '../components/layouts/DefaultLayout';
+import { ImageContainer } from '../components/ImageContainer';
 
 export default {
   title: 'Assets/Image',

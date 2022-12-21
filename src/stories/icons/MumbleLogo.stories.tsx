@@ -1,8 +1,8 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { MumbleLogo } from 'src/components/icons/MumbleLogo';
-import { DefaultLayout } from 'src/components/layouts/DefaultLayout';
-import { ISVGProps } from 'src/interfaces/SVG';
 import React from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { MumbleLogo } from '../../components/icons/MumbleLogo';
+import { DefaultLayout } from '../../components/layouts/DefaultLayout';
+import { ISVGProps } from '../../interfaces/SVG';
 
 export default {
   title: 'Branding/Logo',

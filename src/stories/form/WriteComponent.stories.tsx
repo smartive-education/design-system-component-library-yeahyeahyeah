@@ -25,7 +25,7 @@ export default {
           href: '#',
         },
         avatar: {
-          src: 'https://shorturl.at/cioP7',
+          src: 'https://i0.wp.com/www.mobiflip.de/wp-content/uploads/2022/12/avatar-2-film-detail.jpg?resize=1600%2C1280&ssl=1',
           alt: 'Family Guy goes Mumble',
         },
       },

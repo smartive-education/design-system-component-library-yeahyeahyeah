@@ -1,6 +1,7 @@
-import tw from 'twin.macro';
+import React from 'react';
 import styled from 'styled-components';
-import { IconButton } from 'src/components/buttons/IconButton';
+import tw from 'twin.macro';
+import { IconButton } from './buttons/IconButton';
 
 export interface IAvatarProps
   extends React.HtmlHTMLAttributes<HTMLImageElement> {

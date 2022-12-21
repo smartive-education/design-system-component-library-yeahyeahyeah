@@ -1,8 +1,7 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { IconLink } from 'src/components/IconLink';
-import { DefaultLayout } from 'src/components/layouts/DefaultLayout';
-import { ISVGProps } from 'src/interfaces/SVG';
 import React from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { IconLink } from '../components/IconLink';
+import { DefaultLayout } from '../components/layouts/DefaultLayout';
 
 export default {
   title: 'Interactions',

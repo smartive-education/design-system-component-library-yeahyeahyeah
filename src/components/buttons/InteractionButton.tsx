@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import styled, { css } from 'styled-components';
-import tw from 'twin.macro';
+import tw, { styled, css } from 'twin.macro';
 import {
   HeartFilled,
   HeartOutlined,

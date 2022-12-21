@@ -1,6 +1,7 @@
+import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { TextButton } from 'src/components/buttons/TextButton';
-import { DefaultLayout } from 'src/components/layouts/DefaultLayout';
+import { TextButton } from '../../components/buttons/TextButton';
+import { DefaultLayout } from '../../components/layouts/DefaultLayout';
 
 export default {
   title: 'Interactions',

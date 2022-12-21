@@ -1,6 +1,7 @@
+import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ShareButton } from 'src/components/buttons/ShareButton';
-import { DefaultLayout } from 'src/components/layouts/DefaultLayout';
+import { ShareButton } from '../../components/buttons/ShareButton';
+import { DefaultLayout } from '../../components/layouts/DefaultLayout';
 
 export default {
   title: 'Interactions',

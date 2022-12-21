@@ -18,7 +18,8 @@ export default {
       control: {
         type: 'text',
       },
-      defaultValue: 'https://shorturl.at/lowzH',
+      defaultValue:
+        'https://i0.wp.com/www.mobiflip.de/wp-content/uploads/2022/12/avatar-2-film-detail.jpg?resize=1600%2C1280&ssl=1',
     },
     alt: {
       control: {

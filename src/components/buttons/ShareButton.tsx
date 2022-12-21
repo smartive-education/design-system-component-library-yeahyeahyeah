@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import tw from 'twin.macro';
-import { Share } from 'src/components/icons/icons';
+import { Share } from '../../components/icons/icons';
 
 export interface IShareButton
   extends React.HtmlHTMLAttributes<HTMLButtonElement> {

@@ -1,6 +1,7 @@
+import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { NavigationDecorator } from 'src/components/layouts/NavigationDecorator';
-import { Navigation } from 'src/components/Navigation';
+import { NavigationDecorator } from '../components/layouts/NavigationDecorator';
+import { Navigation } from '../components/Navigation';
 
 export default {
   title: 'Navigation/Navigation',

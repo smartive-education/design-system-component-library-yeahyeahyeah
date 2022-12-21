@@ -1,10 +1,10 @@
+import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { IconTemplate } from 'src/components/layouts/IconGrid';
+import { IconTemplate } from '../../components/layouts/IconGrid';
 import { Settings } from '../../components/icons/icons';
 import { Icons, IconTypes } from '../../components/icons/IconMap';
-import { Heading } from 'src/components/typography/Heading';
-import { Paragraph } from 'src/components/typography/Paragraph';
-import React from 'react';
+import { Heading } from '../../components/typography/Heading';
+import { Paragraph } from '../../components/typography/Paragraph';
 
 let tailWindColors: string[] = [
   'fill-slate-500',
@@ -44,8 +44,8 @@ const TemplateIcon: ComponentStory<typeof Settings | any> = () => (
             Icons[iconType as IconTypes] || Icons['settings'],
             {
               className: tailWindColorsElement,
-              width: 'auto',
-              height: 'auto',
+              width: '50px',
+              height: '50px',
               iconName: iconType,
             },
           );

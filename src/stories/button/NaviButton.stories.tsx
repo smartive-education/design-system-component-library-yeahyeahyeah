@@ -1,7 +1,8 @@
+import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { NaviButton } from 'src/components/buttons/NaviButton';
-import { DefaultLayout } from 'src/components/layouts/DefaultLayout';
-import { Icons } from 'src/components/icons/IconMap';
+import { NaviButton } from '../../components/buttons/NaviButton';
+import { DefaultLayout } from '../../components/layouts/DefaultLayout';
+import { Icons } from '../../components/icons/IconMap';
 
 export default {
   title: 'Navigation',

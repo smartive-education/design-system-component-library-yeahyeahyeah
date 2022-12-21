@@ -1,6 +1,7 @@
+import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { DefaultLayout } from 'src/components/layouts/DefaultLayout';
-import { Heading } from 'src/components/typography/Heading';
+import { DefaultLayout } from '../../components/layouts/DefaultLayout';
+import { Heading } from '../../components/typography/Heading';
 
 export default {
   title: 'Typography',
