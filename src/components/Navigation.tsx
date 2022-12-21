@@ -1,10 +1,8 @@
+import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
-import { MumbleLogo, IMumbleLogoProps } from 'src/components/icons/MumbleLogo';
-import {
-  NaviButton,
-  INaviButtonProps,
-} from 'src/components/buttons/NaviButton';
+import { MumbleLogo, IMumbleLogoProps } from '../components/icons/MumbleLogo';
+import { NaviButton, INaviButtonProps } from '../components/buttons/NaviButton';
 
 export interface INavigationProps extends React.ReactElement<HTMLDivElement> {
   logo: IMumbleLogoProps;

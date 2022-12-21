@@ -1,3 +1,4 @@
+import React from 'react';
 import styled, { css } from 'styled-components';
 import tw from 'twin.macro';
 import { MumbleText, LogoMumble, MumbleGradient } from './icons';

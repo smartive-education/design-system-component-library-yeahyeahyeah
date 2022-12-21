@@ -28,18 +28,18 @@ export const Button: React.FC<IButtonProps> = ({
     className: 'fill-slate-white',
   });
 
-  let props = {} as IButtonProps;
+  let props = {} as ButtonProps;
   const dataVariant = `data-color`;
-  const dataAttrVariant = dataVariant as keyof IButtonProps;
+  const dataAttrVariant = dataVariant as keyof ButtonProps;
   props[dataAttrVariant] = variant;
 
-  const dataSize = `data-size`;
-  const dataAttrSize = dataSize as keyof IButtonProps;
-  props[dataAttrSize] = size;
-
   const dataWidth = `data-width`;
-  const dataAttrWidth = dataWidth as keyof IButtonProps;
+  const dataAttrWidth = dataWidth as keyof ButtonProps;
   props[dataAttrWidth] = width;
+
+  const dataSize = `data-size`;
+  const dataAttrSize = dataSize as keyof ButtonProps;
+  props[dataAttrSize] = size;
 
   return (
     <>

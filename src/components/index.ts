@@ -8,3 +8,5 @@ export * from './buttons/TextButton';
 export * from './layouts/DefaultLayout';
 export * from './layouts/IconGrid';
 export * from './layouts/NavigationDecorator';
+
+export * from './icons/MumbleLogo';
