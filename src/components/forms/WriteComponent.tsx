@@ -8,20 +8,20 @@ import { Button } from '../../components/buttons/Button';
 interface IWriteComponentProps {
   user: IUserProps;
   form: IFormInputProps;
-  variant: 'write' | 'inline';
+  mode: 'write' | 'inline';
 }
 
 export const WriteComponent: React.FC<IWriteComponentProps> = ({
-  variant = 'write',
+  mode = 'write',
   user = {
     label: 'Display Name',
     username: {
       label: 'Username',
       href: '#',
     },
-    variant: 'inline',
+    variant: mode,
     avatar: {
-      src: 'https://i.stack.imgur.com/5xd5n.png',
+      src: 'https://shorturl.at/cioP7',
       alt: 'Alter Tag',
     },
   },
@@ -32,17 +32,17 @@ export const WriteComponent: React.FC<IWriteComponentProps> = ({
 }) => {
   return (
     <>
-      <CardHeader variant={variant}>
-        <CardHeaderRow variant={variant}>
+      <CardHeader mode={mode}>
+        <CardHeaderRow mode={mode}>
           <User
             avatar={user.avatar}
             label={user.label}
             username={user.username}
-            variant={variant}
+            variant={mode}
           />
         </CardHeaderRow>
       </CardHeader>
-      <Card variant={variant}>
+      <Card mode={mode}>
         <InputForm
           className="mt-16"
           editType={'textarea'}
@@ -78,10 +78,10 @@ export const WriteComponent: React.FC<IWriteComponentProps> = ({
 };
 
 interface ICard {
-  variant?: string;
+  mode?: string;
 }
 
-const CardHeader = styled.div(({ variant }: ICard) => [
+const CardHeader = styled.div(({ mode }: ICard) => [
   tw`
   flex
   flex-col
@@ -93,13 +93,13 @@ const CardHeader = styled.div(({ variant }: ICard) => [
   w-full
   rounded-t-16
   `,
-  variant === 'inline' &&
+  mode === 'inline' &&
     tw`
       sm:(px-16 pt-16)
       md:(px-16 pt-0)
       lg:(px-48 pt-0)
   `,
-  variant === 'write' &&
+  mode === 'write' &&
     tw`
       rounded-none
       sm:(px-16 pt-24)
@@ -108,8 +108,8 @@ const CardHeader = styled.div(({ variant }: ICard) => [
   `,
 ]);
 
-const CardHeaderRow = styled.div(({ variant }: ICard) => [
-  variant === 'inline' &&
+const CardHeaderRow = styled.div(({ mode }: ICard) => [
+  mode === 'inline' &&
     tw`
     relative
     sm:(left-0 top-8)
@@ -118,7 +118,7 @@ const CardHeaderRow = styled.div(({ variant }: ICard) => [
   `,
 ]);
 
-const Card = styled.div(({ variant }: ICard) => [
+const Card = styled.div(({ mode }: ICard) => [
   tw`
   flex
   flex-col
@@ -132,8 +132,8 @@ const Card = styled.div(({ variant }: ICard) => [
   md:(px-32)
   lg:(px-48)
   `,
-  variant === 'inline' && tw``,
-  variant === 'write' && tw`rounded-none`,
+  mode === 'inline' && tw``,
+  mode === 'write' && tw`rounded-none`,
 ]);
 
 const Row = styled.div(() => [
@@ -146,8 +146,3 @@ const Row = styled.div(() => [
     sm:(flex-row)
   `,
 ]);
-
-/**
- * @write-component
- * @desc styles
- */

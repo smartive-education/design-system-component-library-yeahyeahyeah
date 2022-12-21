@@ -1,12 +1,19 @@
+import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { WriteComponent } from 'src/components/forms/WriteComponent';
-import { DefaultLayout } from 'src/components/layouts/DefaultLayout';
+import { WriteComponent } from '../../components/forms/WriteComponent';
+import { DefaultLayout } from '../../components/layouts/DefaultLayout';
 
 export default {
   title: 'Write-Component/Inline',
   component: WriteComponent,
   decorators: [(story) => <DefaultLayout>{story()}</DefaultLayout>],
   argTypes: {
+    mode: {
+      control: {
+        type: 'select',
+      },
+      defaultValue: 'inline',
+    },
     user: {
       control: {
         type: 'object',
@@ -18,7 +25,7 @@ export default {
           href: '#',
         },
         avatar: {
-          src: 'https://www.liveabout.com/thmb/H9V_z_oYhbKldDJJUL53tVN36cQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/peter_2008_v2F_hires1-56a00f083df78cafda9fdcb6.jpg',
+          src: 'https://shorturl.at/cioP7',
           alt: 'Family Guy goes Mumble',
         },
       },
