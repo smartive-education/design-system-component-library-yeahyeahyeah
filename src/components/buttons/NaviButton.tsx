@@ -1,5 +1,6 @@
 import React from 'react';
-import tw, { styled } from 'twin.macro';
+import styled from 'styled-components';
+import tw from 'twin.macro';
 import { Icons, IconTypes } from '../icons/IconMap';
 import { Avatar } from '../../components/Avatar';
 

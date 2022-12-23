@@ -32,8 +32,8 @@ export const WriteComponent: React.FC<IWriteComponentProps> = ({
 }) => {
   return (
     <>
-      <CardHeader mode={mode}>
-        <CardHeaderRow mode={mode}>
+      <Card mode={mode}>
+        <CardHeaderRow>
           <User
             avatar={user.avatar}
             label={user.label}
@@ -41,8 +41,6 @@ export const WriteComponent: React.FC<IWriteComponentProps> = ({
             variant={mode}
           />
         </CardHeaderRow>
-      </CardHeader>
-      <Card mode={mode}>
         <InputForm
           className="mt-16"
           editType={'textarea'}
@@ -81,37 +79,35 @@ interface ICard {
   mode?: string;
 }
 
-const CardHeader = styled.div(({ mode }: ICard) => [
-  tw`
-  flex
-  flex-col
-  items-baseline
-  bg-slate-white
-  pt-16
-  px-16
-  pl-16
-  w-full
-  rounded-t-16
-  `,
-  mode === 'inline' &&
-    tw`
-      sm:(px-16 pt-16)
-      md:(px-16 pt-0)
-      lg:(px-48 pt-0)
-  `,
-  mode === 'write' &&
-    tw`
-      rounded-none
-      sm:(px-16 pt-24)
-      md:(px-32 pt-32)
-      lg:(px-48 pt-32)
-  `,
-]);
+// const CardHeader = styled.div(({ mode }: ICard) => [
+//   tw`
+//     container
+//     bg-slate-white
+//     p-16
+//     pb-0
+//   `,
+//   mode === 'inline' &&
+//     tw`
+//       rounded-t-16
+//       sm:(px-16 pt-16)
+//       md:(px-16 pt-0)
+//       lg:(px-48 pt-0)
+//   `,
+//   mode === 'write' &&
+//     tw`
+//       rounded-none
+//       sm:(px-16 pt-24)
+//       md:(px-32 pt-32)
+//       lg:(px-48 pt-32)
+//   `,
+// ]);
 
 const CardHeaderRow = styled.div(({ mode }: ICard) => [
   mode === 'inline' &&
     tw`
-    relative
+    absolute
+    bg-pink-600
+    translate-x-64
     sm:(left-0 top-8)
     md:(-left-[60px] top-16)
     lg:(-left-[76px] top-16)
@@ -126,7 +122,7 @@ const Card = styled.div(({ mode }: ICard) => [
   pb-32
   px-16
   w-full
-  rounded-b-16
+  rounded-16
   
   sm:(px-16)
   md:(px-32)
