@@ -63,7 +63,6 @@ export const InputForm: React.FC<IFormInputProps> = ({
               id={label}
               rows={20}
               cols={30}
-              aria-colspan={10}
               maxLength={500}
               required={required}
               placeholder={placeholder}
