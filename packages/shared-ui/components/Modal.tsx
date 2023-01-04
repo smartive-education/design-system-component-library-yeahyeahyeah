@@ -16,16 +16,16 @@ export interface IModalProps extends React.HtmlHTMLAttributes<HTMLLinkElement> {
 }
 
 export const Modal: React.FC<IModalProps> = ({
-  label = 'Modal',
+  label = 'Einstellungen',
   children,
   openOnStart = false,
   cancel = {
-    label: 'Open Modal',
-    icon: 'fullscreen',
+    label: 'Abbrechen',
+    icon: 'cancel',
     size: 'small',
     type: 'button',
-    variant: 'violet',
-    width: 'large',
+    variant: 'slate',
+    width: 'full',
     fCallBack: (type: string) => {
       return type;
     },
@@ -80,7 +80,7 @@ export const Modal: React.FC<IModalProps> = ({
     <>
       <Button
         fCallBack={handleOpen}
-        label={label}
+        label={openModal.label}
         size={openModal.size}
         type={openModal.type}
         variant={openModal.variant}

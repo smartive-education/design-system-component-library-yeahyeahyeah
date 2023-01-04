@@ -9,17 +9,9 @@ export default {
   component: Modal,
   decorators: [(story) => <DefaultLayout>{story()}</DefaultLayout>],
   argTypes: {
-    label: {
-      control: 'text',
-      table: {
-        defaultValue: {
-          summary: 'Title',
-        },
-      },
-    },
     openModal: {
       control: 'object',
-      description: 'Open modal on start.',
+
       table: {
         defaultValue: {
           label: 'Open Modal',
@@ -33,17 +25,17 @@ export default {
       },
     },
     cancel: {
-      control: {
-        type: 'object',
-      },
-      defaultValue: {
-        label: 'Abbrechen',
-        icon: 'cancel',
-        size: 'small',
-        type: 'button',
-        variant: 'slate',
-        width: 'full',
-        fCallBack: action('handleClose'),
+      control: 'object',
+      table: {
+        defaultValue: {
+          label: 'Abbrechen',
+          icon: 'cancel',
+          size: 'small',
+          type: 'button',
+          variant: 'slate',
+          width: 'full',
+          fCallBack: action('handleClose'),
+        },
       },
     },
     save: {
@@ -57,7 +49,7 @@ export default {
         type: 'button',
         variant: 'violet',
         width: 'full',
-        fCallBack: action('Modal Button: Save'),
+        fCallBack: action('Modal: Button Save'),
       },
     },
     spacing: {
@@ -68,7 +60,10 @@ export default {
     },
     openOnStart: {
       control: 'boolean',
-      defaultValue: false,
+      description: 'Open modal on start',
+      table: {
+        defaultValue: false,
+      },
     },
   },
 } as ComponentMeta<typeof Modal>;
@@ -83,6 +78,12 @@ ModalStory.args = {
   openModal: {
     label: 'Open Modal',
     fCallBack: action('handleOpen'),
+  },
+  cancel: {
+    label: 'Abbrechen',
+    icon: 'cancel',
+    width: 'full',
+    fCallBack: action('handleClose'),
   },
 };
 
