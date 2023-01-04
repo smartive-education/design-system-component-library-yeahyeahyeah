@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import tw, { styled } from 'twin.macro';
 import { Heading } from './typography/Heading';
 import { Button, IButtonProps } from './buttons/Button';
@@ -8,59 +8,97 @@ export interface IModalProps extends React.HtmlHTMLAttributes<HTMLLinkElement> {
   label: string;
   cancel: IButtonProps;
   save: IButtonProps;
-  fCallBack?: () => void;
+  openModal: IButtonProps;
+  fCallBack?: (type: string) => void;
   spacing?: TSpacing;
   children?: React.ReactNode;
+  openOnStart: boolean;
 }
 
 export const Modal: React.FC<IModalProps> = ({
   label = 'Modal',
+  children,
+  openOnStart = false,
   cancel = {
-    label: 'Label',
-    icon: 'cancel',
+    label: 'Open Modal',
+    icon: 'fullscreen',
     size: 'small',
     type: 'button',
-    variant: 'slate',
-    width: 'full',
+    variant: 'violet',
+    width: 'large',
+    fCallBack: (type: string) => {
+      return type;
+    },
   },
   save = {
     label: 'Label',
     icon: 'checkmark',
     size: 'small',
-    type: 'button',
+    type: 'submit',
     variant: 'violet',
     width: 'full',
     fCallBack: () => {
       return null;
     },
   },
-  children,
+  openModal = {
+    label: 'Open Modal',
+    icon: 'cancel',
+    size: 'small',
+    type: 'button',
+    variant: 'slate',
+    width: 'full',
+    fCallBack: (type: string) => {
+      return type;
+    },
+  },
 }) => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState<boolean>(openOnStart);
 
   const handleClose = () => {
-    setOpen(false);
-    console.log('close clicked');
+    setOpen(!open);
+    cancel.fCallBack && cancel.fCallBack(open.toString());
   };
 
   const handleOpen = () => {
-    setOpen(true);
-    console.log('Modal open clicked');
+    setOpen(!open);
+    openModal.fCallBack && openModal.fCallBack(open.toString());
   };
+
+  useEffect(() => {
+    const close = (e: { keyCode: number }) => {
+      if (e.keyCode === 27) {
+        handleClose();
+        setOpen(false);
+      }
+    };
+    window.addEventListener('keydown', close);
+    return () => window.removeEventListener('keydown', close);
+  }, [open]);
 
   return (
     <>
       <Button
         fCallBack={handleOpen}
-        label={'Open Modal'}
-        size={cancel.size}
-        type={cancel.type}
-        variant={cancel.variant}
+        label={label}
+        size={openModal.size}
+        type={openModal.type}
+        variant={openModal.variant}
+        icon={openModal.icon}
         width={'default'}
       />
-      <ModalWrapper aria-labelledby={label} role="dialog" aria-modal="true" open={open}>
+      <ModalDialog
+        id={label}
+        tabIndex={-1}
+        aria-hidden={openOnStart}
+        aria-label={label}
+        aria-labelledby={label}
+        role="dialog"
+        aria-modal={openOnStart}
+        open={open}
+      >
         <ModalOverlay></ModalOverlay>
-        <ModalColumn>
+        <ModalContainer>
           <ModalRow>
             <ModalBox>
               <ModalHeader>
@@ -69,6 +107,7 @@ export const Modal: React.FC<IModalProps> = ({
                   <Cancel tw="fill-slate-white" onClick={handleClose} />
                 </IconWrapper>
               </ModalHeader>
+
               <ModalContent>{children}</ModalContent>
               <ModalFooter>
                 <Button
@@ -81,7 +120,7 @@ export const Modal: React.FC<IModalProps> = ({
                   icon={cancel.icon}
                 />
                 <Button
-                  fCallBack={cancel.fCallBack}
+                  fCallBack={save.fCallBack}
                   label={save.label}
                   size={save.size}
                   type={save.type}
@@ -92,8 +131,8 @@ export const Modal: React.FC<IModalProps> = ({
               </ModalFooter>
             </ModalBox>
           </ModalRow>
-        </ModalColumn>
-      </ModalWrapper>
+        </ModalContainer>
+      </ModalDialog>
     </>
   );
 };
@@ -102,7 +141,7 @@ interface IModalStyles {
   open: boolean;
 }
 
-const ModalWrapper = styled.div(({ open }: IModalStyles) => [
+const ModalDialog = styled.div(({ open }: IModalStyles) => [
   tw`
     relative
     z-10  
@@ -151,7 +190,7 @@ const ModalBox = styled.div(() => [
   `,
 ]);
 
-const ModalColumn = styled.div(() => [
+const ModalContainer = styled.div(() => [
   tw`
     fixed
     inset-0

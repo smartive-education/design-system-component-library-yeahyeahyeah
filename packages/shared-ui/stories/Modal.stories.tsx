@@ -17,6 +17,21 @@ export default {
         },
       },
     },
+    openModal: {
+      control: 'object',
+      description: 'Open modal on start.',
+      table: {
+        defaultValue: {
+          label: 'Open Modal',
+          icon: 'fullscreen',
+          size: 'small',
+          type: 'button',
+          variant: 'violet',
+          width: 'large',
+          fCallBack: action('handleOpen'),
+        },
+      },
+    },
     cancel: {
       control: {
         type: 'object',
@@ -28,7 +43,7 @@ export default {
         type: 'button',
         variant: 'slate',
         width: 'full',
-        fCallBack: action('Modal cancel clicked'),
+        fCallBack: action('handleClose'),
       },
     },
     save: {
@@ -42,7 +57,7 @@ export default {
         type: 'button',
         variant: 'violet',
         width: 'full',
-        fCallBack: action('Modal save clicked'),
+        fCallBack: action('Modal Button: Save'),
       },
     },
     spacing: {
@@ -51,21 +66,24 @@ export default {
         disable: true,
       },
     },
-    fCallBack: () => {
-      console.log('Avatar');
+    openOnStart: {
+      control: 'boolean',
+      defaultValue: false,
     },
   },
 } as ComponentMeta<typeof Modal>;
 
 const Template: ComponentStory<typeof Modal> = (args) => <Modal {...args} />;
-/**
- * @button
- * @desc button standard slate
- */
+
 export const ModalStory = Template.bind({});
 
 ModalStory.args = {
   label: 'Modal',
+  openOnStart: true,
+  openModal: {
+    label: 'Open Modal',
+    fCallBack: action('handleOpen'),
+  },
 };
 
 ModalStory.parameters = {
