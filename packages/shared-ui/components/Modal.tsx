@@ -45,7 +45,7 @@ export const Modal: React.FC<IModalProps> = ({
 
   const handleOpen = () => {
     setOpen(true);
-    console.log('close clicked');
+    console.log('Modal open clicked');
   };
 
   return (
@@ -56,7 +56,7 @@ export const Modal: React.FC<IModalProps> = ({
         size={cancel.size}
         type={cancel.type}
         variant={cancel.variant}
-        width={cancel.width}
+        width={'default'}
       />
       <ModalWrapper aria-labelledby={label} role="dialog" aria-modal="true" open={open}>
         <ModalOverlay></ModalOverlay>
@@ -172,6 +172,7 @@ const ModalRow = styled.div(() => [
 const ModalContent = styled.div(() => [
   tw`
     p-24
+    overflow-y-auto
   `,
 ]);
 
