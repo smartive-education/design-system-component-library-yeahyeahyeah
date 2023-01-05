@@ -4,7 +4,7 @@ import { Heading } from './typography/Heading';
 import { Button, IButtonProps } from './buttons/Button';
 import { Cancel } from './index';
 
-export interface IModalProps extends React.HtmlHTMLAttributes<HTMLLinkElement> {
+export interface IModalProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
   label: string;
   cancel: IButtonProps;
   save: IButtonProps;
@@ -52,12 +52,14 @@ export const Modal: React.FC<IModalProps> = ({
       return type;
     },
   },
+  fCallBack,
 }) => {
   const [open, setOpen] = useState<boolean>(openOnStart);
 
   const handleClose = () => {
     setOpen(!open);
     cancel.fCallBack && cancel.fCallBack(open.toString());
+    fCallBack && fCallBack(open.toString());
   };
 
   const handleOpen = () => {
