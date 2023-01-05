@@ -67,9 +67,13 @@ export const Modal: React.FC<IModalProps> = ({
 
   useEffect(() => {
     const close = (e: { keyCode: number }) => {
-      if (e.keyCode === 27) {
+      if (e.keyCode === 27 || e.keyCode === 40) {
         handleClose();
         setOpen(false);
+      }
+      if (e.keyCode === 38) {
+        handleOpen();
+        setOpen(true);
       }
     };
     window.addEventListener('keydown', close);
@@ -99,7 +103,7 @@ export const Modal: React.FC<IModalProps> = ({
       >
         <ModalOverlay></ModalOverlay>
         <ModalContainer>
-          <ModalRow>
+          <ModalWrapper onClick={handleClose}>
             <ModalBox>
               <ModalHeader>
                 <Heading tag="h3" color="white" size="default" label={label} />
@@ -130,7 +134,7 @@ export const Modal: React.FC<IModalProps> = ({
                 />
               </ModalFooter>
             </ModalBox>
-          </ModalRow>
+          </ModalWrapper>
         </ModalContainer>
       </ModalDialog>
     </>
@@ -199,7 +203,7 @@ const ModalContainer = styled.div(() => [
   `,
 ]);
 
-const ModalRow = styled.div(() => [
+const ModalWrapper = styled.div(() => [
   tw`
     flex
     justify-center
