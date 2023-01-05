@@ -49,7 +49,7 @@ export default {
         type: 'button',
         variant: 'violet',
         width: 'full',
-        fCallBack: action('Modal: Button Save'),
+        fCallBack: action('modal: button save'),
       },
     },
     spacing: {
@@ -60,7 +60,7 @@ export default {
     },
     openOnStart: {
       control: 'boolean',
-      description: 'Open modal on start',
+      description: 'modal: open on start',
       table: {
         defaultValue: false,
       },
