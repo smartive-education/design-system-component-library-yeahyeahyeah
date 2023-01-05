@@ -94,7 +94,6 @@ export const Modal: React.FC<IModalProps> = ({
       <ModalDialog
         id={label}
         tabIndex={-1}
-        aria-hidden={openOnStart}
         aria-label={label}
         aria-labelledby={label}
         role="dialog"
