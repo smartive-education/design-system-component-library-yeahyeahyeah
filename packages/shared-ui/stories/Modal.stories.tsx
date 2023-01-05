@@ -77,6 +77,7 @@ ModalStory.args = {
   openOnStart: true,
   openModal: {
     label: 'Open Modal',
+    icon: 'fullscreen',
     fCallBack: action('handleOpen'),
   },
   cancel: {
