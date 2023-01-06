@@ -11,7 +11,7 @@ export default {
   argTypes: {
     openModal: {
       control: 'object',
-
+      description: 'Element that opens modal',
       table: {
         defaultValue: {
           label: 'Open Modal',
@@ -39,7 +39,7 @@ const Template: ComponentStory<typeof Modal> = (args) => <Modal {...args} />;
 export const ModalStory = Template.bind({});
 
 ModalStory.args = {
-  label: 'Modal',
+  label: 'Title modal',
   openOnStart: true,
   openModal: {
     label: 'Open Modal',

@@ -6,14 +6,14 @@ import { Cancel } from './index';
 
 export interface IModalProps extends React.HtmlHTMLAttributes<HTMLLinkElement> {
   label: string;
-  openModal: IButtonProps;
+  openModal?: IButtonProps;
   fCallBack?: (type: string) => void;
   children?: React.ReactNode;
-  openOnStart: boolean;
+  openOnStart?: boolean;
 }
 
 export const Modal: React.FC<IModalProps> = ({
-  label = 'Einstellungen',
+  label,
   children,
   fCallBack,
   openOnStart = false,
