@@ -1,13 +1,11 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Modal } from '../components/Modal';
-import { DefaultLayout } from './layouts/DefaultLayout';
 import { action } from '@storybook/addon-actions';
 
 export default {
   title: 'Modal/Modal',
   component: Modal,
-  decorators: [(story) => <DefaultLayout>{story()}</DefaultLayout>],
   argTypes: {
     openModal: {
       control: 'object',

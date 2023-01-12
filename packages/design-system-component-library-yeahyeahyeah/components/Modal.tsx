@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import tw, { styled } from 'twin.macro';
+import styled from 'styled-components';
+import tw from 'twin.macro';
 import { Heading } from './typography/Heading';
 import { Button, IButtonProps } from './buttons/Button';
 import { Cancel } from './index';
@@ -22,7 +23,7 @@ export const Modal: React.FC<IModalProps> = ({
     icon: 'cancel',
     size: 'small',
     type: 'button',
-    variant: 'slate',
+    color: 'slate',
     width: 'full',
     fCallBack: (type: string) => {
       return type;
@@ -63,7 +64,7 @@ export const Modal: React.FC<IModalProps> = ({
         label={openModal.label}
         size={openModal.size}
         type={openModal.type}
-        variant={openModal.variant}
+        color={openModal.color}
         icon={openModal.icon}
         width={'default'}
       />
