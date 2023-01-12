@@ -2,32 +2,32 @@ import React from 'react';
 import tw, { css, styled } from 'twin.macro';
 import { IconsMapped, IconTypes } from '../icons/IconMap';
 
-export interface IButtonProps extends React.HtmlHTMLAttributes<HTMLButtonElement> {
+export interface IButtonProps {
   label: string;
-  variant?: 'slate' | 'violet' | 'pink';
+  color: 'slate' | 'violet' | 'pink';
   size?: 'small' | 'large';
   width?: 'default' | 'large' | 'full';
   type?: 'button' | 'reset' | 'submit';
   disabled?: boolean;
   fCallBack?: () => void;
-  icon: IconTypes;
+  icon?: IconTypes;
 }
 
 export const Button: React.FC<IButtonProps> = ({
   label = 'Button Label',
-  variant = 'slate',
-  type = 'button',
+  color = 'slate',
   size = 'small',
   width = 'default',
+  type = 'button',
   disabled = false,
   fCallBack = () => null,
-  icon = 'calendar',
+  icon = 'none',
 }) => {
   const Icon = createIcon(icon);
 
   return (
     <StyledButton
-      variant={variant}
+      color={color}
       size={size}
       width={width}
       type={type}
@@ -36,16 +36,12 @@ export const Button: React.FC<IButtonProps> = ({
       aria-label={label}
     >
       {label}
-      <Icon />
+      {icon !== 'none' && <Icon />}
     </StyledButton>
   );
 };
 
-interface ButtonProps {
-  variant?: string;
-  width?: string;
-  size?: string;
-}
+type ButtonProps = Pick<IButtonProps, 'color' | 'size' | 'width' | 'type'>;
 
 const createIcon = (icon: IconTypes) => {
   return styled(IconsMapped[icon as IconTypes])(() => [tw`ml-64 fill-slate-white`]);
@@ -81,27 +77,27 @@ const buttonFocus = tw`
   focus:(outline-4 outline-offset-0)
 `;
 
-const Variant = ({ variant }: ButtonProps) => [
+const Color = ({ color }: ButtonProps) => [
   tw`
   !bg-slate-600
   hover:(bg-slate-700 outline-slate-100)
   focus:(outline-slate-200)
   disabled:bg-slate-300`,
-  variant === 'slate' &&
+  color === 'slate' &&
     tw`
   !bg-slate-600
   hover:(bg-slate-700 outline-slate-100)
   focus:(outline-slate-200)
   disabled:bg-slate-300
 `,
-  variant === 'violet' &&
+  color === 'violet' &&
     tw`
   !bg-violet-600
   hover:(bg-violet-700 outline-violet-100)
   focus:(outline-violet-200)
   disabled:bg-violet-300
 `,
-  variant === 'pink' &&
+  color === 'pink' &&
     tw`
   !bg-gradient-to-r from-pink-500 to-violet-500
   hover:(bg-gradient-to-r-70 outline-violet-100)
@@ -130,6 +126,6 @@ const StyledButton = styled.button(() => [
   buttonFocus,
   ButtonWidth,
   ButtonSize,
-  Variant,
+  Color,
   IconMargin,
 ]);

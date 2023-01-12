@@ -1,19 +1,17 @@
+// styles/GlobalStyles.tsx
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { GlobalStyles as BaseStyles } from 'twin.macro';
+import { MumbleStyles } from '@smartive-education/design-system-component-library-yeahyeahyeah';
 
 const CustomStyles = createGlobalStyle({
-  body: {
-    // color: 'white',
-    // WebkitTapHighlightColor: theme`colors.purple.500`,
-    // ...tw`antialiased`,
-    fontFamily: 'var(--font-family-base)',
-  },
+  body: {},
 });
 
 const GlobalStyles = () => (
   <>
     <BaseStyles />
+    <MumbleStyles />
     <CustomStyles />
   </>
 );

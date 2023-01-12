@@ -3,16 +3,14 @@ import tw, { styled } from 'twin.macro';
 import { IconButton } from './buttons/IconButton';
 
 export interface IAvatarProps extends React.HtmlHTMLAttributes<HTMLImageElement> {
+  variant: 'small' | 'medium' | 'large' | 'xlarge' | 'edit';
   src: string;
   alt: string;
-  variant: 'small' | 'medium' | 'large' | 'xlarge' | 'edit';
   buttonCallBack?: () => void;
   imageCallBack?: () => void;
 }
 
-export const Avatar: React.FC<IAvatarProps> = (props: IAvatarProps) => {
-  const { variant = 'small', alt, src, buttonCallBack, imageCallBack } = props;
-
+export const Avatar: React.FC<IAvatarProps> = ({ variant = 'small', alt = '', src = '', buttonCallBack, imageCallBack }) => {
   return (
     <>
       {variant !== 'edit' ? (
@@ -55,14 +53,11 @@ const Image = styled.img(({ variant }: IImageProps) => [
   tw`
     relative
     left-0
-
-    md:(mr-4)
-    lg:(mr-8)
   `,
   variant === 'small' && tw`h-40 w-40 min-w-[40px]`,
   variant === 'small' && ImageAnim,
 
-  variant === 'medium' && tw`h-64 w-64 min-w-[64px] border-4`,
+  variant === 'medium' && tw`h-[72px] w-[72px] min-w-[72px] border-4`,
   variant === 'medium' && ImageAnim,
 
   variant === 'large' && tw`h-96 w-96 border-4`,
@@ -82,7 +77,7 @@ const Image = styled.img(({ variant }: IImageProps) => [
 		border-4
     `,
   tw`
-  border-slate-100
+  border-slate-200
 	bg-violet-200
 		rounded-full
 		cursor-pointer

@@ -1,12 +1,10 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Checkbox } from '../../components/forms/Checkbox';
-import { DefaultLayout } from '../layouts/DefaultLayout';
+import { CheckBox } from '../../components/forms/CheckBox';
 
 export default {
-  title: 'Form/Switch',
-  component: Checkbox,
-  decorators: [(story) => <DefaultLayout>{story()}</DefaultLayout>],
+  title: 'Form',
+  component: CheckBox,
   argTypes: {
     selection: {
       control: 'select',
@@ -25,24 +23,24 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof Checkbox>;
+} as ComponentMeta<typeof CheckBox>;
 
-const Template: ComponentStory<typeof Checkbox> = (args) => <Checkbox {...args} />;
+const Template: ComponentStory<typeof CheckBox> = (args) => <CheckBox {...args} />;
 
 /**
  * @input
  * @desc form input field
  */
-export const FormCheckboxStory = Template.bind({});
+export const CheckBoxStory = Template.bind({});
 
-FormCheckboxStory.args = {
+CheckBoxStory.args = {
   selection: 'mumbles',
 };
 
-FormCheckboxStory.parameters = {
+CheckBoxStory.parameters = {
   docs: {
     source: { type: 'dynamic' },
   },
 };
 
-FormCheckboxStory.storyName = 'Switch';
+CheckBoxStory.storyName = 'CheckBox';

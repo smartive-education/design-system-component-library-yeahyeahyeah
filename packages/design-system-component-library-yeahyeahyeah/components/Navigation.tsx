@@ -1,9 +1,9 @@
+import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { MumbleLogo, IMumbleLogoProps } from './branding/MumbleLogo';
 import { NaviButton, INaviButtonProps } from './buttons/NaviButton';
-
-export interface INavigationProps extends React.ReactElement<HTMLDivElement> {
+export interface INavigationProps {
   logo: IMumbleLogoProps;
   avatar: INaviButtonProps;
   settings: INaviButtonProps;
@@ -45,33 +45,39 @@ export const Navigation: React.FC<INavigationProps> = ({
 }) => {
   return (
     <>
-      <NavigationStyles>
-        <Container>
-          <Column>
-            <MumbleLogo
-              title={logo.title}
-              href={logo.href}
-              variant="white"
-              alignment="horizontal"
-              fCallBack={logo.fCallBack}
-              isNavigation={true}
-            />
-            <Row>
-              <NaviButton variant={avatar.variant} label={avatar.label} fCallBack={avatar.fCallBack} src={avatar.src} />
-              <NaviButton
-                icon={settings.icon}
-                label={settings.label}
-                variant={settings.variant}
-                fCallBack={settings.fCallBack}
+      <HeaderStyles>
+        <NavigationStyles>
+          <Container>
+            <Column>
+              <MumbleLogo
+                title={logo.title}
+                href={logo.href}
+                color="white"
+                alignment="horizontal"
+                fCallBack={logo.fCallBack}
+                isNavigation={true}
               />
-              <NaviButton icon={logout.icon} label={logout.label} variant={logout.variant} fCallBack={logout.fCallBack} />
-            </Row>
-          </Column>
-        </Container>
-      </NavigationStyles>
+              <Row>
+                <NaviButton variant={avatar.variant} label={avatar.label} fCallBack={avatar.fCallBack} src={avatar.src} />
+                <NaviButton
+                  icon={settings.icon}
+                  label={settings.label}
+                  variant={settings.variant}
+                  fCallBack={settings.fCallBack}
+                />
+                <NaviButton icon={logout.icon} label={logout.label} variant={logout.variant} fCallBack={logout.fCallBack} />
+              </Row>
+            </Column>
+          </Container>
+        </NavigationStyles>
+      </HeaderStyles>
     </>
   );
 };
+
+const HeaderStyles = tw.header`
+  w-full
+`;
 
 const Container = tw.div`
   flex

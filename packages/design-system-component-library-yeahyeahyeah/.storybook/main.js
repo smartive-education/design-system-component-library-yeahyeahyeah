@@ -2,35 +2,16 @@ const path = require('path');
 
 module.exports = {
   stories: ['../**/*.stories.mdx', '../**/*.stories.@(js|jsx|ts|tsx)'],
-  addons: [
-    '@storybook/addon-links',
-    '@storybook/addon-essentials',
-    '@storybook/addon-interactions',
-    '@storybook/addon-a11y',
-  ],
-  framework: '@storybook/react',
-  core: {
-    builder: '@storybook/builder-webpack5',
-  },
-  webpackFinal: async (config) => {
-    config.module.rules
-      .filter((rule) => rule.test?.test('.svg'))
-      .forEach((rule) => (rule.exclude = /\.svg$/i));
-
-    config.module.rules.push({
-      test: /\,css&/,
+  addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@storybook/addon-a11y'],
+  staticDirs: ['../stories/assets/'],
+  rules: [
+    {
+      test: /\.(png|jpe?g|gif)$/i,
       use: [
         {
-          loader: 'postcss-loader',
-          options: {
-            ident: 'postcss',
-            plugins: [require('tailwindcss'), require('autoprefixer')],
-          },
+          loader: 'file-loader',
         },
       ],
-      include: path.resolve(__dirname, '../'),
-    });
-
-    return config;
-  },
+    },
+  ],
 };

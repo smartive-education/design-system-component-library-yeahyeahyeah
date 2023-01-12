@@ -1,12 +1,10 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { MumbleLogo } from '../../components/branding/MumbleLogo';
-import { DefaultLayout } from '../layouts/DefaultLayout';
 import React from 'react';
 
 export default {
   title: 'Branding/Logo',
   component: MumbleLogo,
-  decorators: [(story) => <DefaultLayout>{story()}</DefaultLayout>],
   argTypes: {
     title: {
       name: 'title',
@@ -22,7 +20,7 @@ export default {
       },
       defaultValue: 'horizontal',
     },
-    variant: {
+    color: {
       control: {
         type: 'select',
       },
@@ -30,6 +28,11 @@ export default {
     },
     fCallBack: {
       action: () => 'handleClick',
+    },
+    isNavigation: {
+      control: {
+        type: 'boolean',
+      },
     },
   },
 } as ComponentMeta<typeof MumbleLogo>;

@@ -1,3 +1,3 @@
-export * from './Checkbox';
-export * from './Input';
-export * from './WriteComponent';
+export * from './CheckBox';
+export * from './InputForm';
+export * from './TextBox';

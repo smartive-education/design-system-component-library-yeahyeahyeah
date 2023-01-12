@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import tw, { styled } from 'twin.macro';
 
-export interface IFormCheckboxProps extends React.HtmlHTMLAttributes<HTMLFormElement> {
+export interface IFormCheckBoxProps {
   selection: 'mumbles' | 'likes';
   fCallBack?: (type: string) => void;
 }
 
-export const Checkbox: React.FC<IFormCheckboxProps> = (props: IFormCheckboxProps) => {
+export const CheckBox: React.FC<IFormCheckBoxProps> = (props: IFormCheckBoxProps) => {
   const { fCallBack } = props;
   const [isType, setIsType] = useState<string>('mumbles');
 

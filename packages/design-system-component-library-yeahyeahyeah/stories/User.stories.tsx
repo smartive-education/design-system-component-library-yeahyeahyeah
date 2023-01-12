@@ -1,27 +1,21 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { User } from '../components/User';
-import { DefaultLayout } from './layouts/DefaultLayout';
 import { action } from '@storybook/addon-actions';
+import UserReadme from '../docs/User.md';
 
 export default {
   title: 'User/User',
   component: User,
-  decorators: [(story) => <DefaultLayout>{story()}</DefaultLayout>],
   argTypes: {
     label: {
-      defaultValue: 'Display Name',
+      control: 'text',
     },
     variant: {
-      control: {
-        type: 'select',
-      },
-      defaultValue: 'small',
+      control: 'select',
     },
     username: {
-      control: {
-        type: 'object',
-      },
+      control: 'object',
       defaultValue: {
         label: 'Username',
         href: '',
@@ -79,6 +73,10 @@ export default {
       },
     },
   },
+  args: {
+    label: 'Display Name',
+    variant: 'small',
+  },
 } as ComponentMeta<typeof User>;
 
 const Template: ComponentStory<typeof User> = (args) => <User {...args} />;
@@ -95,6 +93,9 @@ UserStory.args = {
 UserStory.parameters = {
   docs: {
     source: { type: 'dynamic' },
+    description: {
+      component: UserReadme,
+    },
   },
 };
 

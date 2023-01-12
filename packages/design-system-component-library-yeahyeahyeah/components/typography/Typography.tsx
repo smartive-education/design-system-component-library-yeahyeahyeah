@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
-export interface ITypographyProps extends React.HTMLAttributes<HTMLHeadingElement> {
+export interface ITypographyProps {
   label: string;
   variant: 'h1' | 'h2' | 'h3' | 'h4';
   color: 'slate-500' | 'slate-600' | 'violet-600' | 'pink-900';

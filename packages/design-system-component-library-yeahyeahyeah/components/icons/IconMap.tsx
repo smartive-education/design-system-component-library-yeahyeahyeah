@@ -29,36 +29,6 @@ import {
   Upload,
 } from './default_index';
 
-export const Icons = {
-  calendar: <Calendar />,
-  cancel: <Cancel />,
-  checkmark: <Checkmark />,
-  down: <Down />,
-  edit: <Edit />,
-  eye: <Eye />,
-  fullscreen: <Fullscreen />,
-  'heart-filled': <HeartFilled />,
-  'heart-outlined': <HeartOutlined />,
-  left: <Left />,
-  location: <Location />,
-  'logo-mumble': <LogoMumble tw={'fill-violet-600'} />,
-  logout: <Logout />,
-  'mumble-gradient': <MumbleGradient />,
-  'mumble-text': <MumbleText tw={'fill-violet-600'} />,
-  logo: <Logo />,
-  profile: <Profile />,
-  'reply-filled': <ReplyFilled />,
-  'reply-outlined': <ReplyOutlined />,
-  repost: <Repost />,
-  right: <Right />,
-  send: <Send />,
-  settings: <Settings />,
-  share: <Share />,
-  time: <Time />,
-  up: <Up />,
-  upload: <Upload />,
-};
-
 export const IconsMapped = {
   calendar: Calendar,
   cancel: Cancel,
@@ -87,6 +57,7 @@ export const IconsMapped = {
   time: Time,
   up: Up,
   upload: Upload,
+  none: Logo,
 };
 
 export const LikeRepostIcons = {

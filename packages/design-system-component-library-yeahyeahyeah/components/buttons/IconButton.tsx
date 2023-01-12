@@ -3,15 +3,19 @@ import styled, { css } from 'styled-components';
 import tw from 'twin.macro';
 import { IconsMapped, IconTypes } from '../icons/IconMap';
 
-export interface IconButtonProps extends React.HtmlHTMLAttributes<HTMLButtonElement> {
+export interface IconButtonProps {
   label: string;
   icon: IconTypes;
   variant: 'default' | 'edit';
   fCallBack?: () => void;
 }
 
-export const IconButton: React.FC<IconButtonProps> = (props: IconButtonProps) => {
-  const { label, icon, variant, fCallBack } = props;
+export const IconButton: React.FC<IconButtonProps> = ({
+  label = 'Label',
+  icon = 'logo',
+  variant = 'default',
+  fCallBack,
+}) => {
   const Icon = createIcon(icon);
 
   return (

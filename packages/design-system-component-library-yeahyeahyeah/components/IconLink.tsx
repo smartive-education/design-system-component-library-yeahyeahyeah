@@ -5,18 +5,18 @@ import NextLink, { LinkProps } from 'next/link';
 
 export interface IIconLinkProps extends React.HtmlHTMLAttributes<HTMLLinkElement> {
   label: string;
-  type?: 'username' | 'timestamp' | 'location' | 'joined';
-  variant?: 'slate' | 'violet';
+  type: 'username' | 'timestamp' | 'location' | 'joined';
+  color?: 'slate' | 'violet';
   href: string;
   fCallBack?: () => void;
   link?: LinkProps;
 }
 
 export const IconLink: React.FC<IIconLinkProps> = ({
-  label,
+  label = 'username',
   type = 'username',
-  variant = 'slate',
-  href,
+  color = 'violet',
+  href = '#',
   fCallBack,
   link,
 }) => {
@@ -25,13 +25,13 @@ export const IconLink: React.FC<IIconLinkProps> = ({
   const getIcon = () => {
     switch (type) {
       case 'username':
-        return <StyledProfile variant={variant} hover={hover ? 'true' : 'false'} />;
+        return <StyledProfile color={color} hover={hover ? 'true' : 'false'} />;
       case 'timestamp':
-        return <StyledTime variant={variant} hover={hover ? 'true' : 'false'} />;
+        return <StyledTime color={color} hover={hover ? 'true' : 'false'} />;
       case 'location':
-        return <StyledLocaton variant={variant} hover={hover ? 'true' : 'false'} />;
+        return <StyledLocation color={color} hover={hover ? 'true' : 'false'} />;
       case 'joined':
-        return <StyledCalendar variant={variant} hover={hover ? 'true' : 'false'} />;
+        return <StyledCalendar color={color} hover={hover ? 'true' : 'false'} />;
       default:
         return null;
     }
@@ -51,14 +51,14 @@ export const IconLink: React.FC<IIconLinkProps> = ({
       scroll={link.scroll}
       shallow={link.shallow}
     >
-      <IconLinkDivStyles variant={variant} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
+      <IconLinkDivStyles color={color} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
         {getIcon()}
         {label}
       </IconLinkDivStyles>
     </NextLink>
   ) : (
     <IconLinkStyles
-      variant={variant}
+      color={color}
       onClick={(event: React.MouseEvent) => {
         handleClick(event);
       }}
@@ -74,15 +74,10 @@ export const IconLink: React.FC<IIconLinkProps> = ({
   );
 };
 
-interface IStyleProps {
-  variant?: string;
-  hover?: string;
+interface IStyled {
+  color: string;
+  hover: string;
 }
-
-/**
- * @Button
- * @desc Button styles
- */
 
 const defaultStyles = tw`
   flex
@@ -93,23 +88,23 @@ const defaultStyles = tw`
   cursor-pointer
 `;
 
-const IconLinkStyles = styled.a(({ variant }: IStyleProps) => [
+const IconLinkStyles = styled.a(({ color }: Pick<IStyled, 'color'>) => [
   defaultStyles,
-  variant === 'slate' && tw`text-slate-400 hover:(text-slate-600)`,
-  variant === 'violet' && tw`text-violet-600 hover:(text-violet-900)`,
+  color === 'slate' && tw`text-slate-400 hover:(text-slate-600)`,
+  color === 'violet' && tw`text-violet-600 hover:(text-violet-900)`,
 ]);
 
-const IconLinkDivStyles = styled.div(({ variant }: IStyleProps) => [
+const IconLinkDivStyles = styled.div(({ color }: Pick<IStyled, 'color'>) => [
   defaultStyles,
-  variant === 'slate' && tw`text-slate-400 hover:(text-slate-600)`,
-  variant === 'violet' && tw`text-violet-600 hover:(text-violet-900)`,
+  color === 'slate' && tw`text-slate-400 hover:(text-slate-600)`,
+  color === 'violet' && tw`text-violet-600 hover:(text-violet-900)`,
 ]);
 
-const IconColor = (variant?: string, hover?: string) => {
+const IconColor = (color: string, hover: string) => {
   let hoverColor: TwStyle;
   let defaultColor: TwStyle;
 
-  switch (variant) {
+  switch (color) {
     case 'slate':
       hoverColor = tw`fill-slate-600`;
       defaultColor = tw`fill-slate-400`;
@@ -122,19 +117,22 @@ const IconColor = (variant?: string, hover?: string) => {
   return null;
 };
 
-const StyledProfile = styled(Profile)(({ variant, hover }: IStyleProps) => [
+const StyledProfile = styled(Profile)(({ color, hover }: IStyled) => [
   tw`w-12 h-12 mr-6 mt-1`,
-  IconColor(variant, hover),
+  color && hover && IconColor(color, hover),
 ]);
 
-const StyledTime = styled(Time)(({ variant, hover }: IStyleProps) => [tw`w-12 h-12 mr-6 mt-1`, IconColor(variant, hover)]);
-
-const StyledLocaton = styled(Location)(({ variant, hover }: IStyleProps) => [
+const StyledTime = styled(Time)(({ color, hover }: IStyled) => [
   tw`w-12 h-12 mr-6 mt-1`,
-  IconColor(variant, hover),
+  color && hover && IconColor(color, hover),
 ]);
 
-const StyledCalendar = styled(Calendar)(({ variant, hover }: IStyleProps) => [
+const StyledLocation = styled(Location)(({ color, hover }: IStyled) => [
   tw`w-12 h-12 mr-6 mt-1`,
-  IconColor(variant, hover),
+  color && hover && IconColor(color, hover),
+]);
+
+const StyledCalendar = styled(Calendar)(({ color, hover }: IStyled) => [
+  tw`w-12 h-12 mr-6 mt-1`,
+  color && hover && IconColor(color, hover),
 ]);

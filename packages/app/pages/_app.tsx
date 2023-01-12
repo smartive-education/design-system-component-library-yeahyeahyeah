@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppProps } from 'next/app';
-import { GlobalStyles } from 'twin.macro';
+import GlobalStyles from '../styles/GlobalStyles';
 import '../styles/globals.css';
 
 const App = ({ Component, pageProps }: AppProps) => (

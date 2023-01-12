@@ -1,17 +1,17 @@
 import tw from 'twin.macro';
 
 export interface ISpacingProps {
-  spacing?: string;
+  mbSpacing?: string;
 }
 
-export const BottomSpacing = ({ spacing }: ISpacingProps) => [
+export const BottomSpacing = ({ mbSpacing }: ISpacingProps) => [
   tw`
     mb-0
   `,
-  spacing === '0' && tw`mb-0`,
-  spacing === '4' && tw`mb-4`,
-  spacing === '8' && tw`mb-8`,
-  spacing === '16' && tw`mb-16`,
-  spacing === '32' && tw`mb-32`,
-  spacing === '64' && tw`mb-64`,
+  mbSpacing === '0' && tw`mb-0`,
+  mbSpacing === '4' && tw`mb-4`,
+  mbSpacing === '8' && tw`mb-8`,
+  mbSpacing === '16' && tw`mb-16`,
+  mbSpacing === '32' && tw`mb-32`,
+  mbSpacing === '64' && tw`mb-64`,
 ];

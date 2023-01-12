@@ -1,38 +1,33 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Avatar } from '../components/Avatar';
-import { DefaultLayout } from './layouts/DefaultLayout';
 import { action } from '@storybook/addon-actions';
+import AvatarReadme from '../docs/Avatar.md';
 
 export default {
   title: 'User',
   component: Avatar,
-  decorators: [(story) => <DefaultLayout>{story()}</DefaultLayout>],
   argTypes: {
     variant: {
-      control: {
-        type: 'select',
-      },
-      defaultValue: 'small',
+      control: 'select',
     },
     src: {
-      control: {
-        type: 'text',
-      },
-      defaultValue: 'https://media.giphy.com/media/cfuL5gqFDreXxkWQ4o/giphy.gif',
+      control: 'text',
     },
     alt: {
-      control: {
-        type: 'text',
-      },
-      defaultValue: 'Alter Tag',
+      control: 'text',
     },
     imageCallBack: {
-      defaultValue: action('image clicked'),
+      action: action('image clicked'),
     },
     buttonCallBack: {
-      defaultValue: action('button clicked'),
+      action: action('button clicked'),
     },
+  },
+  args: {
+    variant: 'large',
+    src: 'https://media.giphy.com/media/cfuL5gqFDreXxkWQ4o/giphy.gif',
+    alt: '',
   },
 } as ComponentMeta<typeof Avatar>;
 
@@ -46,6 +41,9 @@ export const AvatarStory = Template.bind({});
 AvatarStory.parameters = {
   docs: {
     source: { type: 'dynamic' },
+    description: {
+      component: AvatarReadme,
+    },
   },
 };
 

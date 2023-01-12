@@ -1,13 +1,11 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { NaviButton } from '../../components/buttons/NaviButton';
-import { DefaultLayout } from '../layouts/DefaultLayout';
-import { Icons } from '../../components/icons/IconMap';
+import { IconsMapped } from '../../components/icons/IconMap';
 
 export default {
   title: 'Navigation',
   component: NaviButton,
-  decorators: [(story) => <DefaultLayout>{story()}</DefaultLayout>],
   argTypes: {
     label: {
       name: 'label',
@@ -41,7 +39,7 @@ export default {
     },
     icon: {
       control: 'select',
-      options: Object.keys(Icons),
+      options: Object.keys(IconsMapped),
       name: 'Icon',
       defaultValue: 'settings',
     },

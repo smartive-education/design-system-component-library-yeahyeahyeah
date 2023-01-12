@@ -1,44 +1,49 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { IconLink } from '../components/IconLink';
-import { DefaultLayout } from './layouts/DefaultLayout';
+import { action } from '@storybook/addon-actions';
+import IconLinkReadme from '../docs/IconLink.md';
 
 export default {
   title: 'Interactions',
   component: IconLink,
-  decorators: [(story) => <DefaultLayout>{story()}</DefaultLayout>],
   argTypes: {
     label: {
-      name: 'label',
-      defaultValue: 'username',
+      control: 'text',
     },
-    variant: {
-      control: {
-        type: 'select',
-      },
-      defaultValue: 'slate',
+    color: {
+      control: 'select',
     },
     href: {
-      defaultValue: '',
+      control: 'text',
     },
-    handleClick: {
-      action: () => 'handleClick',
+    type: {
+      control: 'select',
     },
+    fCallBack: {
+      defaultValue: action('IconLink clicked'),
+    },
+  },
+  args: {
+    label: 'string',
+    color: 'slate',
+    href: '#',
+    type: 'username',
   },
 } as ComponentMeta<typeof IconLink>;
 
 const Template: ComponentStory<typeof IconLink> = (args) => {
   return <IconLink {...args} />;
 };
-/**
- * @button
- * @desc button standard slate
- */
+
 export const IconLinkVariants = Template.bind({});
 
 IconLinkVariants.parameters = {
   docs: {
     source: { type: 'dynamic' },
+    description: {
+      component: IconLinkReadme,
+    },
   },
 };
 

@@ -5,24 +5,48 @@ import { IconLink, IIconLinkProps } from './IconLink';
 import { Button } from './buttons/Button';
 import { Avatar } from './Avatar';
 
-export interface IUserProps extends React.HtmlHTMLAttributes<HTMLDivElement> {
+export interface IUserProps {
   label: string;
   variant: 'small' | 'medium' | 'large' | 'xlarge' | 'recommended' | 'write' | 'inline';
   username: IIconLinkProps;
   timestamp?: IIconLinkProps;
   location?: IIconLinkProps;
   joined?: IIconLinkProps;
-  avatar: { src: string; alt: string; imageCallBack?: () => void; buttonCallBack?: () => void };
+  avatar?: { src: string; alt: string; imageCallBack?: () => void; buttonCallBack?: () => void };
   btn?: { label: string; fCallBack?: () => void };
 }
 
 export const User: React.FC<IUserProps> = ({
   label = 'Display Name',
   variant = 'small',
-  username = { label: 'Username', href: '#' },
-  timestamp = { label: 'TimeStamp', href: '#' },
-  location = { label: 'Location', href: '#' },
-  joined = { label: 'Joined', href: '#' },
+  username = {
+    label: 'Username',
+    href: '#',
+    fCallBack: () => {
+      return null;
+    },
+  },
+  timestamp = {
+    label: 'TimeStamp',
+    href: '#',
+    fCallBack: () => {
+      return null;
+    },
+  },
+  location = {
+    label: 'Location',
+    href: '#',
+    fCallBack: () => {
+      return null;
+    },
+  },
+  joined = {
+    label: 'Joined',
+    href: '#',
+    fCallBack: () => {
+      return null;
+    },
+  },
   avatar = { src: 'https://i.stack.imgur.com/5xd5n.png', alt: 'Alter Tag' },
   btn = { label: 'Follow' },
 }) => {
@@ -38,19 +62,19 @@ export const User: React.FC<IUserProps> = ({
             buttonCallBack={avatar.buttonCallBack}
           />
           <Column variant={variant}>
-            <Heading tag="h4" color="dark" size={'default'} label={label} />
+            <Heading tag="h4" color="dark" size={'medium'} label={label} />
             <Row>
               <IconLink
                 label={username.label}
                 type="username"
-                variant="violet"
+                color="violet"
                 href={username.href}
                 fCallBack={username.fCallBack}
               ></IconLink>
               <IconLink
                 label={timestamp.label}
                 type="timestamp"
-                variant="slate"
+                color="slate"
                 href={timestamp.href}
                 fCallBack={timestamp.fCallBack}
               ></IconLink>
@@ -73,7 +97,7 @@ export const User: React.FC<IUserProps> = ({
               <IconLink
                 label={username.label}
                 type="username"
-                variant="violet"
+                color="violet"
                 href={username.href}
                 fCallBack={username.fCallBack}
               />
@@ -85,7 +109,6 @@ export const User: React.FC<IUserProps> = ({
       {variant === 'write' && (
         <Row gap="small">
           <Column variant={variant}>
-
             <Avatar
               alt={avatar.alt}
               src={avatar.src}
@@ -93,7 +116,9 @@ export const User: React.FC<IUserProps> = ({
               imageCallBack={avatar.imageCallBack}
               buttonCallBack={avatar.buttonCallBack}
             />
-            <Heading tag="h4" color="dark" size={'default'} label={label} />
+            <HeadingWrapper>
+              <Heading tag="h4" color="dark" size={'default'} label={label} />
+            </HeadingWrapper>
           </Column>
         </Row>
       )}
@@ -105,14 +130,14 @@ export const User: React.FC<IUserProps> = ({
             <IconLink
               label={username.label}
               type="username"
-              variant="violet"
+              color="violet"
               href={username.href}
               fCallBack={username.fCallBack}
             ></IconLink>
             <IconLink
               label={timestamp.label}
               type="timestamp"
-              variant="slate"
+              color="slate"
               href={timestamp.href}
               fCallBack={timestamp.fCallBack}
             ></IconLink>
@@ -126,14 +151,14 @@ export const User: React.FC<IUserProps> = ({
             <IconLink
               label={username.label}
               type="username"
-              variant="violet"
+              color="violet"
               href={username.href}
               fCallBack={username.fCallBack}
             ></IconLink>
             <IconLink
               label={timestamp.label}
               type="timestamp"
-              variant="slate"
+              color="slate"
               href={timestamp.href}
               fCallBack={timestamp.fCallBack}
             ></IconLink>
@@ -142,26 +167,26 @@ export const User: React.FC<IUserProps> = ({
       )}
       {variant === 'xlarge' && (
         <Column>
-          <Heading tag="h4" color="dark" size={'xlarge'} label={label} />
+          <Heading tag="h4" color="dark" size={'large'} label={label} />
           <Row>
             <IconLink
               label={username.label}
               type="username"
-              variant="violet"
+              color="violet"
               href={username.href}
               fCallBack={username.fCallBack}
             ></IconLink>
             <IconLink
               label={location.label}
               type="location"
-              variant="slate"
+              color="slate"
               href={location.href}
               fCallBack={location.fCallBack}
             ></IconLink>
             <IconLink
               label={joined.label}
               type="joined"
-              variant="slate"
+              color="slate"
               href={joined.href}
               fCallBack={joined.fCallBack}
             ></IconLink>
@@ -185,7 +210,7 @@ export const User: React.FC<IUserProps> = ({
               <IconLink
                 label={username.label}
                 type="username"
-                variant="violet"
+                color="violet"
                 href={username.href}
                 fCallBack={username.fCallBack}
               ></IconLink>
@@ -196,8 +221,8 @@ export const User: React.FC<IUserProps> = ({
               label={btn?.label}
               size="small"
               type="button"
-              color="violet"
               width="large"
+              color="violet"
             />
           </Column>
         </Article>
@@ -250,3 +275,7 @@ const Row = styled.div(({ gap, spacing }: IRowStyles) => [
 ]);
 
 const Article = styled.article(() => [tw`flex flex-col p-16 bg-slate-white rounded-16`]);
+
+const HeadingWrapper = tw.div`
+  ml-12
+`;

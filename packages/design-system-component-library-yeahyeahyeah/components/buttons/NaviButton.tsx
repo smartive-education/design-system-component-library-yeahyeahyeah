@@ -4,7 +4,7 @@ import tw from 'twin.macro';
 import { IconsMapped, IconTypes } from '../icons/IconMap';
 import { Avatar } from '../Avatar';
 
-export interface INaviButtonProps extends React.HtmlHTMLAttributes<HTMLButtonElement> {
+export interface INaviButtonProps {
   label: string;
   variant?: 'icon' | 'default' | 'profile';
   disabled?: boolean;

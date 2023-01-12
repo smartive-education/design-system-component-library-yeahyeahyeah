@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import { IconsMapped, IconTypes } from '../icons/IconMap';
 
-export interface IShareButton extends React.HtmlHTMLAttributes<HTMLButtonElement> {
+export interface IShareButton {
   label: string;
   fCallBack?: () => void;
 }

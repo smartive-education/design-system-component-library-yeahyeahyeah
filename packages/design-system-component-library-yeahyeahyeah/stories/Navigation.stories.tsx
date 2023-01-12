@@ -1,11 +1,9 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { NavigationDecorator } from './layouts/NavigationDecorator';
 import { Navigation } from '../components/Navigation';
 
 export default {
   title: 'Navigation/Navigation',
-  decorators: [(story) => <NavigationDecorator>{story()}</NavigationDecorator>],
   component: Navigation,
   parameters: { actions: { argTypesRegex: '^on.*' } },
   argTypes: {

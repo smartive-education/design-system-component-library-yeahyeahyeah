@@ -1,16 +1,14 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { TextButton } from '../../components/buttons/TextButton';
-import { DefaultLayout } from '../layouts/DefaultLayout';
+import TextButtonReadme from '../../docs/TextButton.md';
 
 export default {
   title: 'Interactions',
   component: TextButton,
-  decorators: [(story) => <DefaultLayout>{story()}</DefaultLayout>],
   argTypes: {
     label: {
-      name: 'label',
-      defaultValue: 'Label',
+      control: 'text',
     },
     handleClick: {
       action: () => 'handleClick',
@@ -19,10 +17,7 @@ export default {
 } as ComponentMeta<typeof TextButton>;
 
 const Template: ComponentStory<typeof TextButton> = (args) => <TextButton {...args} />;
-/**
- * @button
- * @desc button standard slate
- */
+
 export const ButtonText = Template.bind({});
 
 ButtonText.args = {
@@ -32,6 +27,9 @@ ButtonText.args = {
 ButtonText.parameters = {
   docs: {
     source: { type: 'dynamic' },
+    description: {
+      component: TextButtonReadme,
+    },
   },
 };
 

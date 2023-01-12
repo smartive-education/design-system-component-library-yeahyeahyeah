@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import tw, { styled, TwStyle } from 'twin.macro';
-import { MumbleText, MumbleGradient, LogoMumble } from '../icons/index';
+import { MumbleText, MumbleGradient, LogoMumble as Logo } from '../icons/index';
 
-export interface IMumbleLogoProps extends React.HTMLAttributes<HTMLOrSVGImageElement> {
+export interface IMumbleLogoProps {
   title: string;
   href: string;
-  variant: 'violet' | 'gradient' | 'white';
+  color: 'violet' | 'gradient' | 'white';
   alignment: 'horizontal' | 'vertical';
   fCallBack?: () => void;
   isNavigation?: boolean;
@@ -15,7 +15,7 @@ export const MumbleLogo: React.FC<IMumbleLogoProps> = (props: IMumbleLogoProps) 
   const {
     title = 'Mumble Logo',
     href = '#',
-    variant = 'white',
+    color = 'white',
     alignment = 'horizontal',
     fCallBack,
     isNavigation = true,
@@ -33,15 +33,11 @@ export const MumbleLogo: React.FC<IMumbleLogoProps> = (props: IMumbleLogoProps) 
         onMouseLeave={() => setHover(false)}
       >
         <MumbleLogoStyledDiv alignment={alignment}>
-          <StyledLogoMumble
-            variant={variant}
-            hover={hover ? 'true' : 'false'}
-            navigation={isNavigation ? 'true' : 'false'}
-          />
+          <StyledLogoMumble color={color} hover={hover ? 'true' : 'false'} navigation={isNavigation ? 'true' : 'false'} />
 
-          {variant !== 'gradient' ? (
+          {color !== 'gradient' ? (
             <StyledMumbleText
-              variant={variant}
+              color={color}
               navigation={isNavigation ? 'true' : 'false'}
               alignment={alignment}
               hover={hover ? 'true' : 'false'}
@@ -59,14 +55,16 @@ export const MumbleLogo: React.FC<IMumbleLogoProps> = (props: IMumbleLogoProps) 
   );
 };
 
-interface IMumbleLogoStyled {
-  alignment?: string;
-  variant?: string;
-  navigation?: string;
-  hover?: string;
-}
+type IStyled = {
+  hover: 'true' | 'false';
+  color: 'violet' | 'gradient' | 'white';
+  alignment: 'horizontal' | 'vertical';
+  navigation: 'true' | 'false';
+};
 
-const MumbleLogoStyledDiv = styled.div(({ alignment }: IMumbleLogoStyled) => [
+type IMumbleLogoStyledDiv = Pick<IStyled, 'alignment'>;
+
+const MumbleLogoStyledDiv = styled.div(({ alignment }: IMumbleLogoStyledDiv) => [
   tw`
     flex
     justify-between
@@ -86,28 +84,34 @@ const MumbleLogoStyledLink = styled.a(() => [
   `,
 ]);
 
-const StyledLogoMumble = styled(LogoMumble)(({ variant, hover, navigation }: IMumbleLogoStyled) => [
+type IStyledLogoMumble = Pick<IStyled, 'color' | 'hover' | 'navigation'>;
+
+const StyledLogoMumble = styled(Logo)(({ color, hover, navigation }: IStyledLogoMumble) => [
   tw`fill-violet-600`,
   navigation === 'true' ? tw`w-48 h-48` : tw`w-64 h-64 `,
-  IconColor(variant, hover),
+  IconColor(color, hover),
 ]);
 
-const StyledMumbleText = styled(MumbleText)(({ alignment, navigation, variant, hover }: IMumbleLogoStyled) => [
+type IStyledMumbleText = Pick<IStyled, 'alignment' | 'navigation' | 'color' | 'hover'>;
+
+const StyledMumbleText = styled(MumbleText)(({ alignment, navigation, color, hover }: IStyledMumbleText) => [
   navigation === 'true' ? tw`h-[30px] w-[154px]` : tw`h-[48px] w-[246px]`,
   TextSvgStyles(alignment, navigation),
-  IconColor(variant, hover),
+  IconColor(color, hover),
 ]);
 
-const StyledMumbleGradient = styled(MumbleGradient)(({ alignment, navigation }: IMumbleLogoStyled) => [
+type IStyledMumbleGradient = Pick<IStyled, 'alignment' | 'navigation' | 'hover'>;
+
+const StyledMumbleGradient = styled(MumbleGradient)(({ alignment, navigation }: IStyledMumbleGradient) => [
   navigation === 'true' ? tw`h-[30px] w-[154px]` : tw`h-[48px] w-[246px]`,
   TextSvgStyles(alignment, navigation),
 ]);
 
-const IconColor = (variant?: string, hover?: string) => {
+const IconColor = (color: string, hover: string) => {
   let hoverColor: TwStyle;
   let defaultColor: TwStyle;
 
-  switch (variant) {
+  switch (color) {
     case 'violet':
       defaultColor = tw`fill-violet-600`;
       hoverColor = tw`fill-slate-white`;
@@ -124,7 +128,7 @@ const IconColor = (variant?: string, hover?: string) => {
   return null;
 };
 
-const TextSvgStyles = (alignment?: string, navigation?: string) => {
+const TextSvgStyles = (alignment: string, navigation: string) => {
   switch (alignment) {
     case 'horizontal':
       return navigation === 'true' ? (tw`ml-8 sm:ml-16` as TwStyle) : (tw`ml-8 sm:ml-16 ` as TwStyle);

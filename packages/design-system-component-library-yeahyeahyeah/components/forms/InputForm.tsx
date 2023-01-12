@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import tw, { styled } from 'twin.macro';
 import { Eye } from '../icons/index';
 
-export interface IFormInputProps extends React.HtmlHTMLAttributes<HTMLFormElement> {
+export interface IFormInputProps {
   label?: string;
   editType: 'input' | 'textarea';
   required: boolean;
@@ -65,6 +65,7 @@ export const InputForm: React.FC<IFormInputProps> = ({
               placeholder={placeholder}
               onChange={(e) => setText && setText(e.target.value)}
             />
+            <FormFieldError>{errorMessage}</FormFieldError>
           </FormLabel>
         </>
       )}

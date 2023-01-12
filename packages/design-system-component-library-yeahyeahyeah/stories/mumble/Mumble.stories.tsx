@@ -1,16 +1,14 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Mumble } from '../../components/mumble/Mumble';
-import { DefaultLayout } from '../layouts/DefaultLayout';
 import { action } from '@storybook/addon-actions';
 
 export default {
   title: 'Mumble/Mumble',
   component: Mumble,
-  decorators: [(story) => <DefaultLayout>{story()}</DefaultLayout>],
   argTypes: {
     variant: {
-      defaultValue: 'timeline',
+      control: 'select',
     },
     user: {
       control: {
@@ -27,22 +25,26 @@ export default {
           href: '',
           label: 'Joined',
           fCallBack: action('joined clicked'),
+          type: 'joined',
         },
         label: 'Display Name',
         location: {
           href: '',
           label: 'Location',
           fCallBack: action('location clicked'),
+          type: 'location',
         },
         timestamp: {
           href: '',
           label: 'Timestamp',
           fCallBack: action('timestamp clicked'),
+          type: 'timestamp',
         },
         username: {
           href: '',
           label: 'Username',
           fCallBack: action('username clicked'),
+          type: 'username',
         },
         variant: 'xlarge',
       },
@@ -82,12 +84,14 @@ export default {
         label: 'Share',
       },
     },
-    spacing: {
-      control: false,
-      table: {
-        disable: true,
-      },
+    mbSpacing: {
+      control: 'select',
+      options: ['0', '2', '4', '8', '16', '32', '64'],
+      defaultValue: '0',
     },
+  },
+  args: {
+    variant: 'timeline',
   },
 } as ComponentMeta<typeof Mumble>;
 

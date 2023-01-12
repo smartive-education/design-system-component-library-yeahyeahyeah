@@ -1,57 +1,50 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Button } from '../../components/buttons/Button';
-import { Icons } from '../../components/icons/IconMap';
-import { DefaultLayout } from '../layouts/DefaultLayout';
+import { IconsMapped } from '../../components/icons/IconMap';
+import Readme from '../../docs/Button.md';
 
 export default {
   title: 'Interactions',
   component: Button,
-  decorators: [(story) => <DefaultLayout>{story()}</DefaultLayout>],
   argTypes: {
     label: {
-      name: 'label',
-      defaultValue: 'Button Label',
+      control: 'text',
+    },
+    color: {
+      control: 'select',
     },
     type: {
-      control: {
-        type: 'select',
-      },
-      defaultValue: 'button',
+      control: 'select',
     },
     disabled: {
-      control: {
-        type: 'boolean',
-      },
-      defaultValue: false,
+      control: 'boolean',
     },
     size: {
-      description: 'A sized version of the button',
-      control: { type: 'radio' },
-      defaultValue: 'small',
+      control: 'select',
     },
     width: {
-      description: 'A full width version of the button',
-      control: {
-        type: 'radio',
-      },
-      defaultValue: 'default',
-    },
-    variant: {
       control: {
         type: 'select',
       },
-      defaultValue: 'slate',
     },
     fCallBack: {
       action: () => 'handleClick',
     },
     icon: {
       control: 'select',
-      options: Object.keys(Icons),
+      options: Object.keys(IconsMapped),
       name: 'Icon',
-      defaultValue: 'settings',
     },
+  },
+  args: {
+    label: 'Button Label',
+    type: 'button',
+    disabled: false,
+    size: 'small',
+    width: 'default',
+    color: 'slate',
+    icon: 'logo',
   },
 } as ComponentMeta<typeof Button>;
 
@@ -59,16 +52,16 @@ const Template: ComponentStory<typeof Button> = (args) => {
   return <Button {...args} />;
 };
 
-/**
- * @button
- * @desc button standard slate
- */
-export const ButtonVariants = Template.bind({});
+export const ButtonStory = Template.bind({});
 
-ButtonVariants.parameters = {
+ButtonStory.parameters = {
   docs: {
     source: { type: 'dynamic' },
+    description: {
+      component: Readme,
+      language: 'javascript',
+    },
   },
 };
 
-ButtonVariants.storyName = 'Button';
+ButtonStory.storyName = 'Button';

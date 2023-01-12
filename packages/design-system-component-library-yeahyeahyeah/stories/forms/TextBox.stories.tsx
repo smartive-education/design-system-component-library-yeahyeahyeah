@@ -1,13 +1,11 @@
 import React, { useEffect } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { WriteComponent } from '../../components/forms/WriteComponent';
-import { DefaultLayout } from '../layouts/DefaultLayout';
+import { TextBox } from '../../components/forms/TextBox';
 import { action } from '@storybook/addon-actions';
 
 export default {
-  title: 'Form/Write-Component',
-  component: WriteComponent,
-  decorators: [(story) => <DefaultLayout>{story()}</DefaultLayout>],
+  title: 'Form',
+  component: TextBox,
   argTypes: {
     variant: {
       control: 'select',
@@ -25,8 +23,11 @@ export default {
         type: 'object',
       },
       defaultValue: {
-        placeholder: 'Na, was meinste dazu ...?',
+        required: false,
+        autoComplete: 'off',
         errorMessage: 'Da ist etwas schief gelaufen',
+        placeholder: 'Na, was meinste dazu ...?',
+        editType: 'textarea',
       },
     },
     upload: {
@@ -63,7 +64,7 @@ export default {
         disable: true,
       },
     },
-    spacing: {
+    mbSpacing: {
       control: false,
       table: {
         disable: true,
@@ -86,29 +87,31 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof WriteComponent>;
+} as ComponentMeta<typeof TextBox>;
 
-const Template: ComponentStory<typeof WriteComponent> = (args) => {
+const Template: ComponentStory<typeof TextBox> = (args) => {
   const [text, setText] = React.useState<string>('');
 
   useEffect(() => {
     console.log('text', text);
   }, [text]);
 
-  return <WriteComponent {...args} setText={setText} />;
+  return <TextBox {...args} setText={setText} />;
 };
 
 // WRITE STORY
-export const ComponentWriteStory = Template.bind({});
+export const TextBoxStory = Template.bind({});
 
-ComponentWriteStory.argTypes = {
+TextBoxStory.argTypes = {
   user: {
     control: {
       type: 'object',
     },
     defaultValue: {
       label: 'Hey, was läuft?',
+      variant: 'write',
       username: {
+        type: 'joined',
         label: 'Username',
         href: '#',
       },
@@ -120,16 +123,16 @@ ComponentWriteStory.argTypes = {
   },
 };
 
-ComponentWriteStory.args = {
+TextBoxStory.args = {
   variant: 'start',
   startHeading: 'Hey, was läuft?',
   startParagraph: 'Schreib deinen ersten Mumble, oder folge einem User.',
 };
 
-ComponentWriteStory.parameters = {
+TextBoxStory.parameters = {
   docs: {
     source: { type: 'dynamic' },
   },
 };
 
-ComponentWriteStory.storyName = 'Write-Component';
+TextBoxStory.storyName = 'TextBox';

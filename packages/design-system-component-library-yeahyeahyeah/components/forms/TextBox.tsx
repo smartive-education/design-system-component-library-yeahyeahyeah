@@ -1,25 +1,26 @@
 import React from 'react';
 import tw, { styled } from 'twin.macro';
 import { User, IUserProps } from '../User';
-import { InputForm, IFormInputProps } from './Input';
+import { InputForm, IFormInputProps } from './InputForm';
 import { Button, IButtonProps } from '../buttons/Button';
 import { BottomSpacing } from '../Spacing';
 import { Heading, Paragraph } from '../index';
+import type { TmbSpacing } from '../../types/types';
 
-export interface IWriteComponentProps {
+export interface ITextBoxProps {
   user: IUserProps;
   form: IFormInputProps;
   variant: 'write' | 'inline' | 'start';
   upload: IButtonProps;
   send: IButtonProps;
   setText: React.Dispatch<React.SetStateAction<string>>;
-  spacing?: TSpacing;
+  mbSpacing?: TmbSpacing;
   startHeading?: string;
   startParagraph?: string;
 }
 
-export const WriteComponent: React.FC<IWriteComponentProps> = ({
-  variant = 'write',
+export const TextBox: React.FC<ITextBoxProps> = ({
+  variant,
   startHeading = 'Hey, was läuft?',
   setText,
   startParagraph = 'Schreib deinen ersten Mumble, oder folge einem User',
@@ -28,6 +29,7 @@ export const WriteComponent: React.FC<IWriteComponentProps> = ({
     username: {
       label: 'Username',
       href: '#',
+      type: 'username',
     },
     avatar: {
       src: 'https://media.giphy.com/media/ZYzt9dXQUjmBa/giphy.gif',
@@ -43,7 +45,7 @@ export const WriteComponent: React.FC<IWriteComponentProps> = ({
     icon: 'upload',
     size: 'small',
     type: 'button',
-    variant: 'slate',
+    color: 'slate',
     width: 'full',
     fCallBack: () => {
       return null;
@@ -54,7 +56,7 @@ export const WriteComponent: React.FC<IWriteComponentProps> = ({
     icon: 'send',
     size: 'small',
     type: 'button',
-    variant: 'violet',
+    color: 'violet',
     width: 'full',
     fCallBack: () => {
       return null;
@@ -64,7 +66,7 @@ export const WriteComponent: React.FC<IWriteComponentProps> = ({
   return (
     <>
       <Card variant={variant}>
-        <UserWrapper variant={variant} spacing={'16'}>
+        <UserWrapper variant={variant} mbSpacing={'16'}>
           {variant === 'write' && (
             <User avatar={user.avatar} label={user.label} username={user.username} variant={'write'} />
           )}
@@ -74,7 +76,7 @@ export const WriteComponent: React.FC<IWriteComponentProps> = ({
           {variant === 'start' && (
             <>
               <Heading tag="h3" label={startHeading} color="light" size="default" />
-              <Paragraph text={startParagraph} color="light" size="default" />
+              <Paragraph text={startParagraph} color="light" size="default" alignment="left" />
             </>
           )}
         </UserWrapper>
@@ -93,7 +95,7 @@ export const WriteComponent: React.FC<IWriteComponentProps> = ({
             label={upload.label}
             size={upload.size}
             type={upload.type}
-            variant={upload.variant}
+            color={upload.color}
             width={upload.width}
             icon={upload.icon}
           />
@@ -102,7 +104,7 @@ export const WriteComponent: React.FC<IWriteComponentProps> = ({
             label={send.label}
             size={send.size}
             type={send.type}
-            variant={send.variant}
+            color={send.color}
             width={send.width}
             icon={send.icon}
           />
@@ -114,7 +116,7 @@ export const WriteComponent: React.FC<IWriteComponentProps> = ({
 
 interface ICard {
   variant?: string;
-  spacing?: string;
+  mbSpacing?: string;
 }
 
 const Card = styled.div(({ variant }: ICard) => [
@@ -132,14 +134,25 @@ const Card = styled.div(({ variant }: ICard) => [
     md:(px-32)
     lg:(px-48)
   `,
-  variant === 'write' && tw`rounded pt-4`,
+  variant === 'write' && tw`rounded pt-0`,
   variant === 'inline' && tw`rounded-none`,
   variant === 'start' && tw`rounded`,
 ]);
 
 const UserWrapper = styled.div(({ variant }: ICard) => [
   BottomSpacing,
-  variant === 'write' && tw`relative left-0 top-16 md:-left-70`,
+  variant === 'write' &&
+    tw`
+    flex
+    flex-row
+    justify-between
+    items-center
+    relative
+    top-16
+    left-0
+    md:(-left-[70px])
+    lg:(-left-[86px])
+  `,
 ]);
 
 const Row = styled.div(() => [
